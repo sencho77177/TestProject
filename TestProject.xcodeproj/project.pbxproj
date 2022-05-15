@@ -26,6 +26,7 @@
 		F3FE73FA282FCC2C00092B9D /* APIGiphyManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73F9282FCC2C00092B9D /* APIGiphyManeger.swift */; };
 		F3FE73FC283045DA00092B9D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73FB283045DA00092B9D /* Data.swift */; };
 		F3FE73FF283058D800092B9D /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73FE283058D800092B9D /* HomeCell.swift */; };
+		F3FE740628312E6900092B9D /* GifVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE740528312E6900092B9D /* GifVCCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		F3FE73F9282FCC2C00092B9D /* APIGiphyManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGiphyManeger.swift; sourceTree = "<group>"; };
 		F3FE73FB283045DA00092B9D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		F3FE73FE283058D800092B9D /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		F3FE740528312E6900092B9D /* GifVCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifVCCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				F355B732282E69450083FCD3 /* Controllers */,
 				F3FE73F2282FBF4F00092B9D /* Models */,
 				F3FE73FD283058BB00092B9D /* Cell */,
+				F3FE740228311C2D00092B9D /* Helpers */,
 				F355B73B282E72750083FCD3 /* Exstension */,
 				F355B701282D51010083FCD3 /* SceneDelegate.swift */,
 				F355B6FF282D51010083FCD3 /* AppDelegate.swift */,
@@ -185,8 +188,16 @@
 			isa = PBXGroup;
 			children = (
 				F3FE73FE283058D800092B9D /* HomeCell.swift */,
+				F3FE740528312E6900092B9D /* GifVCCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F3FE740228311C2D00092B9D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +341,7 @@
 				F355B702282D51010083FCD3 /* SceneDelegate.swift in Sources */,
 				F3FE73FC283045DA00092B9D /* Data.swift in Sources */,
 				F355B70A282D51010083FCD3 /* TestProject.xcdatamodeld in Sources */,
+				F3FE740628312E6900092B9D /* GifVCCell.swift in Sources */,
 				F355B73D282E72AC0083FCD3 /* SegmentedControl + Extension.swift in Sources */,
 				F355B736282E6A3E0083FCD3 /* HomeViewController.swift in Sources */,
 				F3FE73F4282FBF7D00092B9D /* Giphy.swift in Sources */,

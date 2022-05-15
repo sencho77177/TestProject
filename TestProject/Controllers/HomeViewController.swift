@@ -10,8 +10,8 @@ import UIKit
 class HomeViewController: UIViewController {
     let segmentControl = UISegmentedControl(first: "Trending", second: "Artist", third: "Clips", fourth: "Stories",fifth:"Sticker")
     var giphyManeger = APIGiphyManeger(apiKay: "W3ZBJcFdEhJnd23U0VEza1QYnAfAOjqE")
-    var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    
+    var collectionView: UICollectionView!
+    var giphys = [Giphy]()
     
     
     override func viewDidLoad() {
@@ -19,19 +19,13 @@ class HomeViewController: UIViewController {
             self.giphyManeger.openGiphy { result in
                 switch result {
                     case .Success(let gifs):
-                    for i in gifs {
-                        print("gg")
-                    }
+                    self.giphys = gifs
                 case .Failure(let error):
                     print(error.localizedDescription)
                 }
             }
-        customizeElements()
-        view.addSubview(collectionView)
-        collectionView.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseId)
-        collectionView.frame = view.bounds
-        collectionView.backgroundColor = .red
-        collectionView.dataSource = self
+        setupCollectionView()
+        customizeSegmentControl()
         
         navigationController?.navigationBar.addSubview(segmentControl)
        // view.backgroundColor = .red
@@ -41,7 +35,7 @@ class HomeViewController: UIViewController {
     
     
     
-    private func customizeElements() {
+    private func customizeSegmentControl() {
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segmentControl)
         NSLayoutConstraint.activate([
@@ -54,25 +48,60 @@ class HomeViewController: UIViewController {
         ])
     }
     private func setupCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        collectionView.backgroundColor = .orange
         view.addSubview(collectionView)
-        collectionView.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseId)
-        collectionView.frame = view.bounds
-        collectionView.backgroundColor = .red
+        collectionView.register(GifVCCell.self, forCellWithReuseIdentifier: GifVCCell.reuseId)
         collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        
     }
 }
 
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
-extension HomeViewController: UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return 5
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.reuseId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GifVCCell.reuseId, for: indexPath) as! GifVCCell
+        cell.giphyImageView.image = #imageLiteral(resourceName: "human1")
+        cell.backgroundColor = .red
         return cell
     }
+
 }
-// MARK: - SwiftUI
+
+
+
+
+extension HomeViewController {
+    
+   private func createLayout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalWidth(2/5))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem:item, count: 2)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        //section.interGroupSpacing = 10
+       // section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 20, bottom: 0, trailing: 20)
+        //let sectionHeader = createSectionHeader()
+        
+       // section.boundarySupplementaryItems = [sectionHeader]
+        
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+}
 
 
 import SwiftUI
