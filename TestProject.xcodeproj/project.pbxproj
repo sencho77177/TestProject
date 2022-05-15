@@ -25,7 +25,6 @@
 		F3FE73F8282FCB9800092B9D /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73F7282FCB9800092B9D /* ErrorManager.swift */; };
 		F3FE73FA282FCC2C00092B9D /* APIGiphyManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73F9282FCC2C00092B9D /* APIGiphyManeger.swift */; };
 		F3FE73FC283045DA00092B9D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73FB283045DA00092B9D /* Data.swift */; };
-		F3FE73FF283058D800092B9D /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73FE283058D800092B9D /* HomeCell.swift */; };
 		F3FE740628312E6900092B9D /* GifVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE740528312E6900092B9D /* GifVCCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +68,6 @@
 		F3FE73F7282FCB9800092B9D /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		F3FE73F9282FCC2C00092B9D /* APIGiphyManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGiphyManeger.swift; sourceTree = "<group>"; };
 		F3FE73FB283045DA00092B9D /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		F3FE73FE283058D800092B9D /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		F3FE740528312E6900092B9D /* GifVCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifVCCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,7 +185,6 @@
 		F3FE73FD283058BB00092B9D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				F3FE73FE283058D800092B9D /* HomeCell.swift */,
 				F3FE740528312E6900092B9D /* GifVCCell.swift */,
 			);
 			path = Cell;
@@ -337,7 +334,6 @@
 				F3FE73F6282FCB5B00092B9D /* APIManager.swift in Sources */,
 				F3FE73FA282FCC2C00092B9D /* APIGiphyManeger.swift in Sources */,
 				F3FE73F8282FCB9800092B9D /* ErrorManager.swift in Sources */,
-				F3FE73FF283058D800092B9D /* HomeCell.swift in Sources */,
 				F355B702282D51010083FCD3 /* SceneDelegate.swift in Sources */,
 				F3FE73FC283045DA00092B9D /* Data.swift in Sources */,
 				F355B70A282D51010083FCD3 /* TestProject.xcdatamodeld in Sources */,

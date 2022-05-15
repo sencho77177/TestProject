@@ -13,8 +13,8 @@ typealias JSONTask = URLSessionDataTask
 typealias JSONCompletionHandler = ([String: AnyObject]?, HTTPURLResponse?, Error?) -> Void
 
 enum APIResult<T> {
-  case Success([T])
-  case Failure(Error)
+  case success([T])
+  case failure(Error)
 }
 
 protocol FinalURLPoint {
@@ -79,16 +79,16 @@ extension APIManager {
         DispatchQueue.main.async {
             guard let json = json else {
               if let error = error {
-                completionHandler(.Failure(error))
+                completionHandler(.failure(error))
               }
               return
             }
             
             if let value = parse(json) {
-              completionHandler(.Success(value))
+              completionHandler(.success(value))
             } else {
               let error = NSError(domain: SWINetworkingErrorDomain, code: 200, userInfo: nil)
-              completionHandler(.Failure(error))
+              completionHandler(.failure(error))
             }
         }
       

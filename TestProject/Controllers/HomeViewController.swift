@@ -18,9 +18,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
             self.giphyManeger.openGiphy { result in
                 switch result {
-                    case .Success(let gifs):
+                    case .success(let gifs):
                     self.giphys = gifs
-                case .Failure(let error):
+                case .failure(let error):
                     print(error.localizedDescription)
                 }
             }
@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 20
     }
     
     
@@ -84,22 +84,47 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 extension HomeViewController {
     
    private func createLayout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalWidth(2/5))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem:item, count: 2)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        //section.interGroupSpacing = 10
-       // section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 20, bottom: 0, trailing: 20)
-        //let sectionHeader = createSectionHeader()
-        
-       // section.boundarySupplementaryItems = [sectionHeader]
-        
+    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2),
+                                            heightDimension: .fractionalHeight(1))
+    let item = NSCollectionLayoutItem(layoutSize: itemSize)
+   // item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+       
+    let verticalItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.5))
+       
+    let verticalStackItem = NSCollectionLayoutItem(layoutSize: verticalItemSize)
+       
+    //verticalStackItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+       
+    let verticalGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1))
+       
+    let verticalStackGroup = NSCollectionLayoutGroup.vertical(layoutSize: verticalGroupSize, subitem: verticalStackItem, count: 2)
+       
+    let tripletItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension:.fractionalWidth(1),
+                                                                                heightDimension: .fractionalWidth(1)))
+       
+    let tripletHorizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(
+        widthDimension:.fractionalWidth(1.0),
+        heightDimension: .fractionalWidth(0.3)),
+                                                                                subitem: tripletItem, count: 3)
+       
+    let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(
+                                                                                            widthDimension: .fractionalWidth(1.0),
+                                                                                            heightDimension:.fractionalWidth(0.7)),
+                                                                                            subitems: [
+                                                                                                        item,
+                                                                                                        verticalStackGroup])
+       
+       let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize:NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),                                                                                              heightDimension: .fractionalHeight(1.0)),
+                                                                                           subitems: [
+                                                                                            horizontalGroup,
+                                                                                            tripletHorizontalGroup
+                                                                                            ])
+    let section = NSCollectionLayoutSection(group: verticalGroup)
+    
         return UICollectionViewCompositionalLayout(section: section)
+    }
+    private func aue() {
+        
     }
 }
 
