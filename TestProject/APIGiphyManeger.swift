@@ -59,7 +59,7 @@ final class APIGiphyManeger: APIManager {
     
     
     
-    func openGiphy(completionHandler:@escaping (APIResult<Giphy>) -> Void) {
+    func loadGiphy(completionHandler:@escaping (APIResult<Giphy>) -> Void) {
 //        let request = ForecastType.Search(apiKey: self.apiKey, searchText: "searchText").request
         
         fetch(request: ForecastType.request,parse: { (json) -> [Giphy]? in

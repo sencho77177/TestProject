@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Gifu
 
 class GifVCCell: UICollectionViewCell {
     static var reuseId: String = "GifVCCell"
@@ -14,9 +15,9 @@ class GifVCCell: UICollectionViewCell {
     ]
     
     
-    var giphyImageView: UIImageView = {
-       let imageView = UIImageView()
-       imageView.contentMode = .scaleAspectFill
+    var giphyImageView: GIFImageView = {
+       let imageView = GIFImageView()
+       //imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -24,8 +25,7 @@ class GifVCCell: UICollectionViewCell {
         super.init(frame: frame)
         giphyImageView.frame = self.frame
         giphyImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
-        giphyImageView.image = #imageLiteral(resourceName: "human1")
+        giphyImageView.backgroundColor = colors.randomElement()
         self.addSubview(giphyImageView)
        
        
@@ -45,8 +45,8 @@ class GifVCCell: UICollectionViewCell {
     func configure(whit value: Giphy) {
         guard let url = value.url else { return }
         guard let urlGif = URL(string: url) else { return }
-        //let imageURL = UIImage.gifImageWithURL(urlGif)
-        //let giphyImageView = UIImageView(image: imageURL)
+       
+        giphyImageView.animate(withGIFURL: urlGif)
         let height = Double(value.height ?? "200")
         let width = Double(value.width ?? "100")
         giphyImageView.frame = CGRect(x: 20.0, y: 390.0, width: width!,height: height!)
