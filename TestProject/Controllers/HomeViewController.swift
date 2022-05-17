@@ -29,9 +29,6 @@ class HomeViewController: UIViewController {
         customizeSegmentControl()
         
         navigationController?.navigationBar.addSubview(segmentControl)
-       // view.backgroundColor = .red
-        
-        
     }
     
     
@@ -74,14 +71,15 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GifVCCell.reuseId, for: indexPath) as! GifVCCell
-        //cell.giphyImageView.image = #imageLiteral(resourceName: "human1")
-        if indexPath.row == 0 {
-            cell.giphyImageView.backgroundColor = .red
-        }else {
-            cell.configure(whit: giphys[indexPath.row - 1])
-        }
+            cell.configure(whit: giphys[indexPath.row])
+            return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
-        return cell
+        let gif = giphys[indexPath.row]
+        let profileVC = ShareScreenVC(value: gif)
+        profileVC.modalPresentationStyle = .fullScreen
+        present(profileVC, animated: true, completion: nil)
     }
 
 }
@@ -92,6 +90,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 extension HomeViewController {
     
    private func createLayout() -> UICollectionViewCompositionalLayout {
+       
        let sItem1 = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1)))
        sItem1.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
        let sItem2 = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1)))
@@ -110,6 +109,57 @@ extension HomeViewController {
     let section = NSCollectionLayoutSection(group: mainHGroup)
     
         return UICollectionViewCompositionalLayout(section: section)
+    }
+    private func createLayoutTest() -> UICollectionViewCompositionalLayout {
+        let insets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+             
+             let topGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/4))
+             
+             let topSmallItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1))
+             let topLargeItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(2/3), heightDimension: .fractionalHeight(1))
+             
+             let topSmallItem = NSCollectionLayoutItem(layoutSize: topSmallItemSize)
+             topSmallItem.contentInsets = insets
+             
+             let topLargeItem = NSCollectionLayoutItem(layoutSize: topLargeItemSize)
+             topLargeItem.contentInsets = insets
+             
+             let topGroup = NSCollectionLayoutGroup.horizontal(layoutSize: topGroupSize, subitems: [topSmallItem, topLargeItem])
+             
+             let midLargeItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(2/3), heightDimension: .fractionalHeight(1))
+             let midSmallItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2))
+             
+             let midLargeItem = NSCollectionLayoutItem(layoutSize: midLargeItemSize)
+             midLargeItem.contentInsets = insets
+             let midSmallItem = NSCollectionLayoutItem(layoutSize: midSmallItemSize)
+             midSmallItem.contentInsets = insets
+             
+             let midNestedGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1))
+             
+             let midNestedGroup = NSCollectionLayoutGroup.vertical(layoutSize: midNestedGroupSize, subitems: [midSmallItem])
+             
+             let midGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2))
+             
+             let midGroup = NSCollectionLayoutGroup.horizontal(layoutSize: midGroupSize, subitems: [midLargeItem, midNestedGroup])
+             
+             let bottomItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/4))
+             
+             let bottomItem = NSCollectionLayoutItem(layoutSize: bottomItemSize)
+             bottomItem.contentInsets = insets
+             
+             
+             // reversed
+             let topGroup2 = NSCollectionLayoutGroup.horizontal(layoutSize: topGroupSize, subitems: [topLargeItem, topSmallItem])
+             let midGroup2 = NSCollectionLayoutGroup.horizontal(layoutSize: midGroupSize, subitems: [midNestedGroup, midLargeItem])
+             
+             let fullGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(400))
+             let fullGroup = NSCollectionLayoutGroup.vertical(layoutSize: fullGroupSize, subitems: [topGroup, midGroup, bottomItem, topGroup2, midGroup2, bottomItem])
+             
+             let section = NSCollectionLayoutSection(group: fullGroup)
+             
+             let layout = UICollectionViewCompositionalLayout(section: section)
+             
+             return layout
     }
    
 }

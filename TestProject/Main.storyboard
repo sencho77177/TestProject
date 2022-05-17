@@ -57,10 +57,35 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="1xX-KD-KTQ"/>
+                    <connections>
+                        <segue destination="Cgo-SI-qYx" kind="show" id="mmq-Gs-Hih"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOB-S7-uEJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1743" y="1793"/>
+            <point key="canvasLocation" x="-2032" y="1959"/>
+        </scene>
+        <!--Share ScreenVC-->
+        <scene sceneID="Amk-pc-bf9">
+            <objects>
+                <viewController id="Cgo-SI-qYx" customClass="ShareScreenVC" customModule="TestProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pFS-UR-US4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ZFY-Tq-34F">
+                                <rect key="frame" x="155" y="454" width="82" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7Rj-sn-EzI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NEf-il-hal"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ETc-ea-ogq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1094.2028985507247" y="1840.8482142857142"/>
         </scene>
         <!--Item-->
         <scene sceneID="14O-S0-yDR">

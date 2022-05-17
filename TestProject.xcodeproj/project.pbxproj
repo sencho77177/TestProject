@@ -23,6 +23,7 @@
 		F355B738282E6AA80083FCD3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355B737282E6AA80083FCD3 /* SearchViewController.swift */; };
 		F355B73A282E6DF10083FCD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F355B739282E6DF10083FCD3 /* Main.storyboard */; };
 		F355B73D282E72AC0083FCD3 /* SegmentedControl + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355B73C282E72AC0083FCD3 /* SegmentedControl + Extension.swift */; };
+		F3C2AC80283241B2007633E2 /* ShareScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C2AC7F283241B2007633E2 /* ShareScreenVC.swift */; };
 		F3FE73F4282FBF7D00092B9D /* Giphy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73F3282FBF7D00092B9D /* Giphy.swift */; };
 		F3FE73F6282FCB5B00092B9D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73F5282FCB5B00092B9D /* APIManager.swift */; };
 		F3FE73F8282FCB9800092B9D /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE73F7282FCB9800092B9D /* ErrorManager.swift */; };
@@ -74,6 +75,7 @@
 		F355B737282E6AA80083FCD3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F355B739282E6DF10083FCD3 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F355B73C282E72AC0083FCD3 /* SegmentedControl + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SegmentedControl + Extension.swift"; sourceTree = "<group>"; };
+		F3C2AC7F283241B2007633E2 /* ShareScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareScreenVC.swift; sourceTree = "<group>"; };
 		F3FE73F3282FBF7D00092B9D /* Giphy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Giphy.swift; sourceTree = "<group>"; };
 		F3FE73F5282FCB5B00092B9D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		F3FE73F7282FCB9800092B9D /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
@@ -131,7 +133,6 @@
 				D0AF5975D970152068C04690 /* Pods-TestProjectTests.debug.xcconfig */,
 				E84C798F8A0C8806CF9D9E50 /* Pods-TestProjectTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -202,6 +203,7 @@
 				F355B733282E69700083FCD3 /* MainTabBarController.swift */,
 				F355B735282E6A3E0083FCD3 /* HomeViewController.swift */,
 				F355B737282E6AA80083FCD3 /* SearchViewController.swift */,
+				F3C2AC7F283241B2007633E2 /* ShareScreenVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -483,6 +485,7 @@
 				F3FE73F6282FCB5B00092B9D /* APIManager.swift in Sources */,
 				F3FE73FA282FCC2C00092B9D /* APIGiphyManeger.swift in Sources */,
 				F3FE73F8282FCB9800092B9D /* ErrorManager.swift in Sources */,
+				F3C2AC80283241B2007633E2 /* ShareScreenVC.swift in Sources */,
 				F355B702282D51010083FCD3 /* SceneDelegate.swift in Sources */,
 				F3FE73FC283045DA00092B9D /* Data.swift in Sources */,
 				F355B70A282D51010083FCD3 /* TestProject.xcdatamodeld in Sources */,
@@ -664,6 +667,8 @@
 				DEVELOPMENT_TEAM = WLMWR54MBP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestProject/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please open for my))";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please open for my))";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -693,6 +698,8 @@
 				DEVELOPMENT_TEAM = WLMWR54MBP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestProject/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please open for my))";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please open for my))";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

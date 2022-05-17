@@ -10,14 +10,22 @@ import Gifu
 
 class GifVCCell: UICollectionViewCell {
     static var reuseId: String = "GifVCCell"
+    static let shared = GifVCCell()
+    
     let colors: [UIColor] = [
         .red, .blue, .orange, .brown, .systemPink
     ]
     
+    let ai: UIActivityIndicatorView = {
+        let ai = UIActivityIndicatorView()
+        ai.style = .large
+        ai.backgroundColor = .red
+        ai.startAnimating()
+        return ai
+    }()
     
     var giphyImageView: GIFImageView = {
        let imageView = GIFImageView()
-       //imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -26,6 +34,11 @@ class GifVCCell: UICollectionViewCell {
         giphyImageView.frame = self.frame
         giphyImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         giphyImageView.backgroundColor = colors.randomElement()
+        giphyImageView.addSubview(ai)
+        ai.translatesAutoresizingMaskIntoConstraints = false
+        ai.centerYAnchor.constraint(equalTo: giphyImageView.centerYAnchor).isActive = true
+        ai.centerXAnchor.constraint(equalTo: giphyImageView.centerXAnchor).isActive = true
+        ai.startAnimating()
         self.addSubview(giphyImageView)
        
        
@@ -50,8 +63,14 @@ class GifVCCell: UICollectionViewCell {
         let height = Double(value.height ?? "200")
         let width = Double(value.width ?? "100")
         giphyImageView.frame = CGRect(x: 20.0, y: 390.0, width: width!,height: height!)
-        
-        //userImageView.sd_setImage(with: url, completed: nil)
     }
     
+    
+    func stopLoading() {
+        if giphyImageView.image != nil {
+            ai.stopAnimating()
+            ai.removeFromSuperview()
+    }
+}
+          
 }
