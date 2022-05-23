@@ -11,16 +11,16 @@ import Foundation
 struct Giphy: Decodable {
     
     let url: String?
-    let width: String?
-    let height: String?
+    let width: Int?
+    let height: Int?
     
 }
 
 extension Giphy: JSONDecodable {
     init?(JSON: [String : AnyObject]) {
         guard let url = JSON["url"] as? String,
-              let width = JSON["width"] as? String,
-              let height = JSON["height"] as? String else { return  nil }
+              let width = JSON["width"] as? Int,
+              let height = JSON["height"] as? Int else { return  nil }
         
         self.url = url
         self.width = width

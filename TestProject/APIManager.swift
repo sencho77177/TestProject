@@ -31,7 +31,6 @@ protocol JSONDecodable {
 protocol APIManager {
   var sessionConfiguration: URLSessionConfiguration { get }
   var session: URLSession { get }
-  
   func JSONTaskWith(request: URLRequest, completionHandler: @escaping JSONCompletionHandler) -> JSONTask
     
 }
