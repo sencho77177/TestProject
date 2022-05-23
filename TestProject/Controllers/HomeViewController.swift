@@ -63,7 +63,9 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout {
    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: Int.random(in: 200...450), height: Int.random(in: 200...450))
+        let width = Int(giphys[indexPath.row].width ?? "200")!
+        let height = Int(giphys[indexPath.row].height ?? "300")!
+        return CGSize(width: width, height: height)
     }
     
     

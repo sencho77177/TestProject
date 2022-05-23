@@ -67,7 +67,7 @@ final class APIGiphyManeger: APIManager {
                 for datas in dictionary {
                     if let imagesJSON = datas["images"] as? [String: AnyObject],
                         let downsizedJSON = imagesJSON["downsized"] as? [String: AnyObject]{
-                        giphys.append(Giphy(JSON: downsizedJSON) ?? Giphy.init(url: self.errorUrl, width: 200, height: 250))
+                        giphys.append(Giphy(JSON: downsizedJSON)!) //?? Giphy.init(url: self.errorUrl, width: 200, height: 250))
                     } else {
                         return nil
                     }

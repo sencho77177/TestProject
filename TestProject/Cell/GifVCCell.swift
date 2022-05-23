@@ -46,9 +46,9 @@ class GifVCCell: UICollectionViewCell {
         guard let url = value.url else { return }
         guard let urlGif = URL(string: url) else { return }
         giphyImageView.animate(withGIFURL: urlGif)
-        let height = value.height ?? 200
-        let width = value.width ?? 100
-        giphyImageView.frame = CGRect(x: 20, y: 390, width: width, height: height)
+        let height = value.height ?? "200"
+        let width = value.width ?? "100"
+        giphyImageView.frame = CGRect(x: 20, y: 390, width: Int(width)!, height: Int(height)!)
     }
     
 }
