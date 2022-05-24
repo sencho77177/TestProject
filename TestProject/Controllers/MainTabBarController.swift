@@ -41,7 +41,6 @@ class MainTabBarController: UITabBarController {
         navigationVC.tabBarItem.title = title
         navigationVC.tabBarItem.image = image
         navigationVC.navigationBar.tintColor = .black
-        
         return navigationVC
     }
 }
