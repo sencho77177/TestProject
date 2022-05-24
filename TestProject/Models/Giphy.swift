@@ -15,7 +15,7 @@ struct Giphy: Decodable {
     let height: String?
     
 }
-
+// petka poxel int stringov
 extension Giphy: JSONDecodable {
     init?(JSON: [String : AnyObject]) {
         guard let url = JSON["url"] as? String,

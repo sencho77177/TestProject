@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CHTCollectionViewWaterfallLayout
+
 
 class HomeViewController: UIViewController {
     let segmentControl = UISegmentedControl(first: "Trending", second: "Artist", third: "Clips", fourth: "Stories",fifth:"Sticker")
@@ -27,13 +29,10 @@ class HomeViewController: UIViewController {
         }
         setupCollectionView()
         customizeSegmentControl()
-        
         navigationController?.navigationBar.addSubview(segmentControl)
     }
     
-    
-    
-    private func customizeSegmentControl() {
+  private func customizeSegmentControl() {
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segmentControl)
         NSLayoutConstraint.activate([
@@ -41,26 +40,34 @@ class HomeViewController: UIViewController {
             segmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 1),
             segmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -1),
             segmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           // segmentControl.widthAnchor.constraint(equalToConstant: 50),
             segmentControl.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+    
     private func setupCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        let layout = CHTCollectionViewWaterfallLayout()
+        layout.itemRenderDirection = .leftToRight
+        layout.columnCount = 2
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         collectionView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         collectionView.backgroundColor = .black
         view.addSubview(collectionView)
         collectionView.register(GifVCCell.self, forCellWithReuseIdentifier: GifVCCell.reuseId)
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        
     }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
-extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout {
+   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = Int(giphys[indexPath.row].width ?? "200")!
+        let height = Int(giphys[indexPath.row].height ?? "300")!
+        return CGSize(width: width, height: height)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       
@@ -74,9 +81,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             cell.configure(whit: giphys[indexPath.row])
             return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
-        let gif = giphys[indexPath.row]
+       let gif = giphys[indexPath.row]
         let profileVC = ShareScreenVC(value: gif)
         profileVC.modalPresentationStyle = .fullScreen
         present(profileVC, animated: true, completion: nil)
@@ -106,60 +113,9 @@ extension HomeViewController {
        lItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
        let mainHGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
        let mainHGroup = NSCollectionLayoutGroup.horizontal(layoutSize: mainHGroupSize, subitems: [lItem, vGroup])
-    let section = NSCollectionLayoutSection(group: mainHGroup)
+       let section = NSCollectionLayoutSection(group: mainHGroup)
     
         return UICollectionViewCompositionalLayout(section: section)
-    }
-    private func createLayoutTest() -> UICollectionViewCompositionalLayout {
-        let insets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-             
-             let topGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/4))
-             
-             let topSmallItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1))
-             let topLargeItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(2/3), heightDimension: .fractionalHeight(1))
-             
-             let topSmallItem = NSCollectionLayoutItem(layoutSize: topSmallItemSize)
-             topSmallItem.contentInsets = insets
-             
-             let topLargeItem = NSCollectionLayoutItem(layoutSize: topLargeItemSize)
-             topLargeItem.contentInsets = insets
-             
-             let topGroup = NSCollectionLayoutGroup.horizontal(layoutSize: topGroupSize, subitems: [topSmallItem, topLargeItem])
-             
-             let midLargeItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(2/3), heightDimension: .fractionalHeight(1))
-             let midSmallItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2))
-             
-             let midLargeItem = NSCollectionLayoutItem(layoutSize: midLargeItemSize)
-             midLargeItem.contentInsets = insets
-             let midSmallItem = NSCollectionLayoutItem(layoutSize: midSmallItemSize)
-             midSmallItem.contentInsets = insets
-             
-             let midNestedGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1))
-             
-             let midNestedGroup = NSCollectionLayoutGroup.vertical(layoutSize: midNestedGroupSize, subitems: [midSmallItem])
-             
-             let midGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2))
-             
-             let midGroup = NSCollectionLayoutGroup.horizontal(layoutSize: midGroupSize, subitems: [midLargeItem, midNestedGroup])
-             
-             let bottomItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/4))
-             
-             let bottomItem = NSCollectionLayoutItem(layoutSize: bottomItemSize)
-             bottomItem.contentInsets = insets
-             
-             
-             // reversed
-             let topGroup2 = NSCollectionLayoutGroup.horizontal(layoutSize: topGroupSize, subitems: [topLargeItem, topSmallItem])
-             let midGroup2 = NSCollectionLayoutGroup.horizontal(layoutSize: midGroupSize, subitems: [midNestedGroup, midLargeItem])
-             
-             let fullGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(400))
-             let fullGroup = NSCollectionLayoutGroup.vertical(layoutSize: fullGroupSize, subitems: [topGroup, midGroup, bottomItem, topGroup2, midGroup2, bottomItem])
-             
-             let section = NSCollectionLayoutSection(group: fullGroup)
-             
-             let layout = UICollectionViewCompositionalLayout(section: section)
-             
-             return layout
     }
    
 }
