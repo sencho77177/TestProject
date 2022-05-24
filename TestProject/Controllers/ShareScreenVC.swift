@@ -40,7 +40,6 @@ class ShareScreenVC: UIViewController {
     }
     
     private func setupElements() {
-     
         gifImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(gifImageView)
         NSLayoutConstraint.activate([
@@ -61,7 +60,7 @@ class ShareScreenVC: UIViewController {
         navItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action:#selector(dismissViewController))
         navItem.leftBarButtonItem?.image = UIImage(systemName: "xmark")
         navItem.leftBarButtonItem?.tintColor = .white
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "sh", style: .plain, target: self, action:#selector(presentAlert))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action:#selector(presentAlert))
         navItem.rightBarButtonItem?.image = UIImage(systemName: "square.and.arrow.up")
         navItem.rightBarButtonItem?.tintColor = .white
         navbar.items = [navItem]
@@ -71,19 +70,16 @@ class ShareScreenVC: UIViewController {
     @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
     @objc func presentAlert() {
         let alert = UIAlertController(title: "News",
-                                      message: "New Sound was released by your favourite artist.",
+                                      message: ".",
                                       preferredStyle: .actionSheet)
         let copyGifAction = UIAlertAction(title: "Copy GIF Link",
                                          style: .default,
                                          handler: { _ in
             UIPasteboard.general.string = self.value.url
             print("Copy GIF Link")
-            
-            
+       
         })
         alert.addAction(copyGifAction)
         
@@ -126,11 +122,11 @@ class ShareScreenVC: UIViewController {
     }
     
         
-        func writeToPhotoAlbum(image: UIImage) {
-                UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
-            }
+    func writeToPhotoAlbum(image: UIImage) {
+         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
+    }
 
-            @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-                print("Save finished!")
-            }
+    @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        print("Save finished!")
+    }
 }
